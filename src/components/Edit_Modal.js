@@ -31,41 +31,28 @@ export default  function Edit_Modal(props) {
 
 
   const handle_fullname = event => {
-    // debounceTimeoutRef.current = setTimeout(() => {
-      
-    //   setFullName(event.target.value)
-     
-    // }, 2000);
-
+  
     setFullName(event.target.value)
    
-      // console.log(event.target.value);
+    
     };
  
 
   const handle_username = event => {
-    // debounceTimeoutRef.current = setTimeout(() => {
-    //   setUserName(event.target.value);
-    // }, 2000);
+  
     setUserName(event.target.value);
-    // console.log(event.target.value);
+
   };
 
   const handle_email = event => {
-    // debounceTimeoutRef.current = setTimeout(() => {
-    //   setEmail(event.target.value);
-    // }, 2000);
+ 
     setEmail(event.target.value);
-    // console.log(event.target.value);
+  
   };
 
   const handle_group = event => {
 
-    // debounceTimeoutRef.current = setTimeout(() => {
-    //   setGroup(event.target.value);
     
-    
-    // },);
     setGroup(event.target.value);
   }
 
@@ -96,8 +83,7 @@ export default  function Edit_Modal(props) {
     setEmail('');
     setGroup('');
     setAreStatesEmpty(true)
-    // props.get_data(id,fullName, userName,email,group);
-    // props.handleClick2();
+   
      }
   
   useEffect(() => {

@@ -19,10 +19,7 @@ class App extends React.Component {
     }
   }
 
-  // handleClick = () => {
-  //   debugger
-  //   this.setState({ isModalOpen: true });
-  // };
+ 
 
   handleClick = () => {
     
@@ -42,18 +39,13 @@ class App extends React.Component {
      
 
 
-     {/* {this.state.isModalOpen && <Modal/>} */}
-     {/* {this.state.isModalOpen && <MyDialog/>} */}
-      {/* <Bar handleClick={this.handleClick} /> */}
-      {/* <Bar/> */}
-      {/* <img className='reno_image' src={reno} alt="Image Description" /> */}
-     
+
       <Home
       
       
       
       />
-      {/* <button>Add New</button> */}
+    
 
 
 

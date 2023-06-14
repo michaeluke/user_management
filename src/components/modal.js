@@ -36,7 +36,7 @@ export default  function Modal(props) {
 
   
       setGroup(event.target.value);
-      debugger
+     // debugger
       console.log(event.target.value)
 
   }
@@ -47,7 +47,7 @@ export default  function Modal(props) {
     setUserName('');
     setEmail('');
     setGroup('');
-  debugger
+//  debugger
     props.handleClick();
   };
 

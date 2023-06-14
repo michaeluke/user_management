@@ -97,7 +97,7 @@ export default function Home(props) {
 
 
   const handleClick = () => {
-    debugger
+   // debugger
   toggle_Modal(!Modal_open);
 
   };
@@ -105,7 +105,7 @@ export default function Home(props) {
   
   const handleClick2 = () => {
     toggle_Edit_Modal(!Modal_view);
-    debugger
+   // debugger
   
     };
 
@@ -138,11 +138,10 @@ export default function Home(props) {
       Email_address,
       Group_info
     }
-debugger
+//debugger
     get_user(data_new)
     
-  //  console.log(data)
-
+ 
   }
 
 
