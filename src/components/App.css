@@ -1,0 +1,80 @@
+.bar{
+
+  margin-top: 100px;
+
+  
+}
+
+button{
+
+  padding: 5px 10px;
+  background-color: #22a565;
+  color: white;
+  border: none;
+  border-radius: 10%;
+  cursor: pointer;
+}
+.work{
+
+
+font-size: 400px;
+
+
+}
+
+#close_btn{
+
+  background-color: #050e2d 
+}
+
+.modal-header{
+  background-color: #050e2d ;
+  color:white;
+}
+
+.labels{
+
+  padding-top: 5px;
+}
+
+.modal{
+
+  margin-top: 50px;
+ 
+}
+#close_footer{
+
+background-color: white;
+color: #000;
+}
+
+#reset{
+
+  margin-right: 200px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+#reset2{
+
+  margin-right: 50px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+
+
+#Group{
+
+  width: 467px;
+  height: 38px;
+  color: gray;
+  border: 1px solid;
+  border-color: rgb(228, 227, 227);
+  border-radius: 0.25rem;
+}
+
+
+#rest{
+
+  margin-left: 650px;
+}
