@@ -7,7 +7,7 @@ const columns = [
   { field: 'userName', headerName: 'User Name', width: 200 },
   {
     field: 'email',
-    headerName: 'Email Adrress',
+    headerName: 'Email Address',
     // type: 'number',
     width: 200,
   },
