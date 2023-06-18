@@ -21,20 +21,6 @@ const columns = [
 
 
 export default function DataTable(props) {
-  // const rows = [
-  //   { id: 1, Name: 'default', userName: 'default', email: '@default',Group :'Default_Group'},
-  //   { id: 2, Name: '', userName: '', email: '',Group :'' },
-  //   { id: 3, Name: '', userName: '', email: '',Group :'' },
-  //   { id: 4, Name: '', userName: '', email: '',Group :'' },
-  //   { id: 5, Name: '', userName: '', email: '', Group:'' },
-  //   { id: 6, Name: '', userName: '', email: '' , Group:''},
-  //   { id: 7, Name: '', userName: '', email: '' , Group:''},
-  //   { id: 8, Name: '', userName: '', email: '' , Group:''},
-  //   { id: 9, Name: '', userName: '', email: '' , Group:''},
-  //   { id: 10, Name: '', userName: '', email: '' , Group:''},
-  //   { id: 11, Name: '', userName: '', email: '' , Group:''},
-  //   { id: 12, Name: '', userName: '', email: '' , Group:''},
-  // ];
 
   const rows =[
     // id , Name , userName , email ,Group
@@ -42,9 +28,7 @@ export default function DataTable(props) {
 
 const [rows_data,setRow] = useState([]);
 
-// const rowsRef = useRef(rows);
 
-// const rows_copy = rowsRef.current.slice();
 
 
 var index = 0;
@@ -79,9 +63,9 @@ useEffect(() => {
    useEffect(() => {
    
     if (props.users_data) {
-    //  var data = props.users_data
+   
      debugger
-    //var index = data.id - (1);
+    
 
     const { id, fullName, userName, email, group } = props.users_data;
     const rows_new = [...rows_data]
@@ -130,11 +114,11 @@ useEffect(() => {
   const getdata = (row) => {
     console.log(row.Name)
   
-    // if(row.Name != ''){
+
     
       props.get_data(row.id,row.fullName, row.userName,row.email,row.group);
       props.handleClick2();
-    // }
+
   
 
 

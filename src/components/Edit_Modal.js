@@ -86,17 +86,10 @@ export default  function Edit_Modal(props) {
     setGroup('');
     props.handleClick2();
  
-    // setAreStatesEmpty(true)
+
    
      }
   
-  // useEffect(() => {
-  //   if (areStatesEmpty) {
-  //     props.get_data(id, fullName, userName, email, group);
-  //     setAreStatesEmpty(false)
-  //     props.handleClick2();
-  //   }
-  // }, [areStatesEmpty]);
 
    console.log(fullName,userName,email,group)
 

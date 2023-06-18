@@ -265,28 +265,18 @@ export default function Home(props) {
         </List>
       </Drawer>
       <Main open={open}>
-    
-      {/* insert here the bootstrap code  
-      
-      
-      
-      */}
+
 
 
 
 
   
       <Bar handleClick = {handleClick}/>
-      {/* <Bar handleClick={handleClick} /> */}
+   
 
        
         <DrawerHeader />
-        {/* <Typography paragraph>
-   
-        </Typography>
-        <Typography paragraph>
-    
-        </Typography> */}
+      
 
 
     <DataTable  users={users} get_data={get_data} handleClick2 = {handleClick2} users_data={users_data} /> 
