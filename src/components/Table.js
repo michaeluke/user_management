@@ -2,8 +2,8 @@ import React, { useRef, useState, useEffect } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 
 const columns = [
-  { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'fullName', headerName: 'Name', width: 350 },
+  { field: 'id', headerName: 'ID', width: 100 },
+  { field: 'fullName', headerName: 'Name', width: 200 },
   { field: 'userName', headerName: 'User Name', width: 200 },
   {
     field: 'email',

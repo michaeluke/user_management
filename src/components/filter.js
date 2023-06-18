@@ -16,7 +16,7 @@ export default function Filter(props) {
     return(
         
         <form className="form-inline">
-        <input className="form-control mr-sm-2" type="search" placeholder="Search..." aria-label="Search" onChange={handle_search}/>
+        <input id="search" className="form-control mr-sm-2" type="search" placeholder="Search..." aria-label="Search" onChange={handle_search}/>
       
         </form>
         
