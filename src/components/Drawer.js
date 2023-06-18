@@ -31,6 +31,8 @@ import Modal from './modal';
 import Edit_Modal from './Edit_Modal';
 import Date_time from './date_time';
 import Filter from './filter';
+import HelpIcon from '@mui/icons-material/Help';
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 const drawerWidth = 200;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -200,7 +202,7 @@ export default function Home(props) {
         
         <Toolbar>
           {/* box here and d-flex it just like a div */}
-
+         
 
 
           <IconButton
@@ -213,12 +215,19 @@ export default function Home(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div"
-          sx={{color:'gray'}}
+          sx={{color:'gray',
+          display: 'flex',
+          justifyContent:'space-between' 
+        
+        
+        }}
           >
-       
-           <Date_time />
+            <div>Good Morning!  {new Date().toLocaleString() + ""}</div>
+            <div id="rest"><HelpIcon/> <NotificationsActiveIcon sx={{color:'gray'}}/> Nader Amer</div>
+           {/* <Date_time /> */}
           </Typography>
         </Toolbar>
+     
       </AppBar>
       <Drawer
         sx={{
