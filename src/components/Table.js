@@ -43,9 +43,9 @@ useEffect(() => {
    debugger
   
 
-   const updatedRows = users.map((user,i) => ({
+   const updatedRows = users.map((user) => ({
     
-    id: i+1,
+    id: user.id,
     fullName: user.fullName,
     userName: user.userName,
     email: user.email,
@@ -58,6 +58,7 @@ useEffect(() => {
 
  
 }, [props.users]);
+
 
 //edit a user
    useEffect(() => {
@@ -104,8 +105,14 @@ useEffect(() => {
 
    
  
-   
-      
+  //search
+  useEffect(()=>{
+
+ 
+  
+  setRow(props.filtered_data)
+
+  },[props.filtered_data]);
 
   
 

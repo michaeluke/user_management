@@ -6,7 +6,7 @@ export default  function Modal(props) {
 
 
   const debounceTimeoutRef = React.useRef(null);
-  const [id, setID] = useState('');
+  const [id, setID] = useState(1);
   const [fullName, setFullName] = useState('');
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
@@ -42,7 +42,10 @@ export default  function Modal(props) {
   }
 
   const handleSubmit = () => {
-    props.addUser(fullName, userName,email,group);
+    
+    setID(prevID => prevID + 1);
+    props.addUser(id,fullName, userName,email,group);
+
     setFullName('');
     setUserName('');
     setEmail('');

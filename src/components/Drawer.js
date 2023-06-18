@@ -30,7 +30,7 @@ import Bar from './bar';
 import Modal from './modal';
 import Edit_Modal from './Edit_Modal';
 import Date_time from './date_time';
-
+import Filter from './filter';
 const drawerWidth = 200;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -113,8 +113,9 @@ export default function Home(props) {
   ///// add user
   const [users, setUsers] = useState([]);
 
-  const addUser = (fullName, userName, email, group,) => {//function
+  const addUser = (id,fullName, userName, email, group,) => {//function
     const newUser = { //object
+      id,
       fullName,
       userName,
       email,
@@ -148,7 +149,24 @@ export default function Home(props) {
   }
 
 
+  //// filter users
+  const [filtered_data,find_users] = useState([]);
 
+  //search
+  const get_value = (search_query) => {
+
+    const filteredData = users.filter(user =>
+      user.fullName.toLowerCase().startsWith(search_query.toLowerCase()),
+  
+    )
+
+    
+      console.log(filteredData)
+      find_users(filteredData);
+
+    
+
+    }
 
 
   
@@ -272,14 +290,14 @@ export default function Home(props) {
 
   
       <Bar handleClick = {handleClick}/>
-   
+      
 
        
         <DrawerHeader />
       
+    <Filter get_value={get_value}/>
 
-
-    <DataTable  users={users} get_data={get_data} handleClick2 = {handleClick2} users_data={users_data} /> 
+    <DataTable  users={users} get_data={get_data} handleClick2 = {handleClick2} users_data={users_data} filtered_data={filtered_data} /> 
     
     <Modal show = {Modal_open} handleClick = {handleClick} addUser={addUser}/> 
     {/* {<Edit_Modal  show = {Modal_view} handleClick={handleClick2} users={users} /> } */}
