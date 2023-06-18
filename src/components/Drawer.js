@@ -122,25 +122,28 @@ export default function Home(props) {
   
 
      };
-    setUsers(prevUsers => [...prevUsers, newUser]);//update state
+     debugger
+     setUsers(prevUsers => [...prevUsers, newUser]);//update state
+      // setUsers(newUser)
+      debugger
   };
 
   //// edit user
   const [users_data,get_user] = useState([]);
 
-  const get_data = (id,Name,UserName,Email_address,Group_info) =>{
+  const get_data = (id,fullName,userName,email,group) =>{
 
     //object that has the data.
     const data_new ={
       id,
-      Name,
-      UserName,
-      Email_address,
-      Group_info
+      fullName,
+      userName,
+      email,
+      group
     }
 //debugger
     get_user(data_new)
-    
+    debugger
  
   }
 

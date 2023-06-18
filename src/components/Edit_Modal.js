@@ -18,10 +18,10 @@ export default  function Edit_Modal(props) {
     if (props.users_data) {
         const user = props.users_data;
      // const user = props.users_data[0];
-      setFullName(user.Name);
-      setUserName(user.UserName);
-      setEmail(user.Email_address);
-      setGroup(user.Group_info);
+      setFullName(user.fullName);
+      setUserName(user.userName);
+      setEmail(user.email)
+      setGroup(user.group);
      
       setID(user.id)
     }
@@ -78,21 +78,25 @@ export default  function Edit_Modal(props) {
   }
   const handleDelete = () => {
  
+    
+    props.get_data(id, '', '', '', '');
     setFullName('');
     setUserName('');
     setEmail('');
     setGroup('');
-    setAreStatesEmpty(true)
+    props.handleClick2();
+ 
+    // setAreStatesEmpty(true)
    
      }
   
-  useEffect(() => {
-    if (areStatesEmpty) {
-      props.get_data(id, fullName, userName, email, group);
-      setAreStatesEmpty(false)
-      props.handleClick2();
-    }
-  }, [areStatesEmpty]);
+  // useEffect(() => {
+  //   if (areStatesEmpty) {
+  //     props.get_data(id, fullName, userName, email, group);
+  //     setAreStatesEmpty(false)
+  //     props.handleClick2();
+  //   }
+  // }, [areStatesEmpty]);
 
    console.log(fullName,userName,email,group)
 

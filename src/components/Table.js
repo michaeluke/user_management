@@ -3,7 +3,7 @@ import { DataGrid } from '@mui/x-data-grid';
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'Name', headerName: 'Name', width: 350 },
+  { field: 'fullName', headerName: 'Name', width: 350 },
   { field: 'userName', headerName: 'User Name', width: 200 },
   {
     field: 'email',
@@ -12,7 +12,7 @@ const columns = [
     width: 200,
   },
   {
-    field: 'Group',
+    field: 'group',
     headerName: 'Group',
     width: 200,
   },
@@ -21,70 +21,100 @@ const columns = [
 
 
 export default function DataTable(props) {
-  const rows = [
-    { id: 1, Name: 'default', userName: 'default', email: '@default',Group :'Default_Group'},
-    { id: 2, Name: '', userName: '', email: '',Group :'' },
-    { id: 3, Name: '', userName: '', email: '',Group :'' },
-    { id: 4, Name: '', userName: '', email: '',Group :'' },
-    { id: 5, Name: '', userName: '', email: '', Group:'' },
-    { id: 6, Name: '', userName: '', email: '' , Group:''},
-    { id: 7, Name: '', userName: '', email: '' , Group:''},
-    { id: 8, Name: '', userName: '', email: '' , Group:''},
-    { id: 9, Name: '', userName: '', email: '' , Group:''},
-    { id: 10, Name: '', userName: '', email: '' , Group:''},
-    { id: 11, Name: '', userName: '', email: '' , Group:''},
-    { id: 12, Name: '', userName: '', email: '' , Group:''},
-  ];
+  // const rows = [
+  //   { id: 1, Name: 'default', userName: 'default', email: '@default',Group :'Default_Group'},
+  //   { id: 2, Name: '', userName: '', email: '',Group :'' },
+  //   { id: 3, Name: '', userName: '', email: '',Group :'' },
+  //   { id: 4, Name: '', userName: '', email: '',Group :'' },
+  //   { id: 5, Name: '', userName: '', email: '', Group:'' },
+  //   { id: 6, Name: '', userName: '', email: '' , Group:''},
+  //   { id: 7, Name: '', userName: '', email: '' , Group:''},
+  //   { id: 8, Name: '', userName: '', email: '' , Group:''},
+  //   { id: 9, Name: '', userName: '', email: '' , Group:''},
+  //   { id: 10, Name: '', userName: '', email: '' , Group:''},
+  //   { id: 11, Name: '', userName: '', email: '' , Group:''},
+  //   { id: 12, Name: '', userName: '', email: '' , Group:''},
+  // ];
 
-const [rows_data,setRow] = useState(rows);
+  const rows =[
+    // id , Name , userName , email ,Group
+  ]
 
-const rowsRef = useRef(rows);
+const [rows_data,setRow] = useState([]);
 
-const rows_copy = rowsRef.current.slice();
+// const rowsRef = useRef(rows);
+
+// const rows_copy = rowsRef.current.slice();
 
 
 var index = 0;
 //add new user
 useEffect(() => {
+
   if (props.users) {
     const users = props.users;
-   // const user = props.users_data[0];
-   
-    users.map ((user,i)=>{
 
-   
-    debugger
-    rows_copy[i].Name =user.fullName
-    rows_copy[i].userName =user.userName
-    rows_copy[i].email =user.email
-    rows_copy[i].Group =user.group
-    debugger
+   const rows_new = [...rows_data]
+  console.log(users)
+   debugger
+  
 
-   })
-   
-   setRow(rows_copy);
+   const updatedRows = users.map((user,i) => ({
+    
+    id: i+1,
+    fullName: user.fullName,
+    userName: user.userName,
+    email: user.email,
+    group: user.group,
+  }))
+
+
+  setRow(updatedRows);
+  } 
+
  
-   
-  }
 }, [props.users]);
 
 //edit a user
    useEffect(() => {
-    if (props.users_data !='') {
-     var data = props.users_data
-     
-     var index = data.id - (1);
+   
+    if (props.users_data) {
+    //  var data = props.users_data
      debugger
-     
-   
+    //var index = data.id - (1);
+
+    const { id, fullName, userName, email, group } = props.users_data;
+    const rows_new = [...rows_data]
+
+
+
+
+    rows_new.forEach((row)=>{
+
+      if(row.id == id){
+        debugger
+        row.id = id;
+        row.fullName = fullName;
+        row.userName = userName;
+        row.email = email;
+        row.group = group;
+
+      }
+         // delete
+        if (fullName === '') {
+          rows_new.forEach((row, index) => {
+            if (row.id === id) {
+              rows_new.splice(index, 1);
+              props.users.splice(index,1);
+            }
+          });
+        }
+    },
+
+    setRow(rows_new)
       
-      rows_copy[index].Name = data.Name;
-      rows_copy[index].userName = data.UserName;
-      rows_copy[index].email = data.Email_address;
-      rows_copy[index].Group = data.Group_info;
-   
-      setRow(rows_copy);
-  
+      )
+
     }
   }, [props.users_data]);
 
@@ -100,10 +130,11 @@ useEffect(() => {
   const getdata = (row) => {
     console.log(row.Name)
   
-    if(row.Name != ''){
+    // if(row.Name != ''){
+    
+      props.get_data(row.id,row.fullName, row.userName,row.email,row.group);
       props.handleClick2();
-      props.get_data(row.id,row.Name, row.userName,row.email,row.Group);
-    }
+    // }
   
 
 

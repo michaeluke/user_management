@@ -11,7 +11,7 @@ export default function Bar(props) {
 
             <div className='user'> User Management</div>
 
-            <div onClick={props.handleClick} className='button_adduser'><button>Add User</button></div>
+            <div onClick={props.handleClick} className='button_adduser'><button>+ Add New </button></div>
 
          </div>
 

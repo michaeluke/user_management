@@ -101,7 +101,7 @@ export default  function Modal(props) {
             <div className="modal-footer">
               <div id='reset'>Reset fields</div>
               <button onClick={props.handleClick} type="button" className="btn btn-secondary" id='close_footer' data-toggle="modal">Cancel</button>
-              <button onClick={handleSubmit} type="button" className="btn btn-primary">Add User</button>
+              <button onClick={handleSubmit} type="button" className="btn btn-primary"> Add User</button>
             </div>
           </div>
         </div>
