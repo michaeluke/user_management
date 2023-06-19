@@ -1,6 +1,6 @@
 import React , { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-
+import { useForm } from 'react-hook-form';
 
 export default  function Edit_Modal(props) {
 
@@ -12,12 +12,12 @@ export default  function Edit_Modal(props) {
   const [email, setEmail] = useState('');
   const [group,setGroup] = useState('')
 
-   const [areStatesEmpty, setAreStatesEmpty] = useState(false);
+  const { register, handleSubmit  , formState: { errors },} = useForm();
 
   useEffect(() => {
     if (props.users_data) {
         const user = props.users_data;
-     // const user = props.users_data[0];
+  
       setFullName(user.fullName);
       setUserName(user.userName);
       setEmail(user.email)
@@ -28,41 +28,14 @@ export default  function Edit_Modal(props) {
   }, [props.users_data]);
 
 
-
-
-  const handle_fullname = event => {
+  const onSubmit = (data) => {
   
-    setFullName(event.target.value)
-   
-    
-    };
- 
-
-  const handle_username = event => {
-  
-    setUserName(event.target.value);
-
-  };
-
-  const handle_email = event => {
- 
-    setEmail(event.target.value);
-  
-  };
-
-  const handle_group = event => {
-
-    
-    setGroup(event.target.value);
-  }
-
-  const handleSubmit = () => {
-    props.get_data(id,fullName, userName,email,group);
+    props.get_data(id,data.fullName, data.userName,data.email,data.group);
     setFullName('');
     setUserName('');
     setEmail('');
     setGroup('');
-  
+
     props.handleClick2();
   };
 
@@ -86,8 +59,6 @@ export default  function Edit_Modal(props) {
     setGroup('');
     props.handleClick2();
  
-
-   
      }
   
 
@@ -111,37 +82,56 @@ export default  function Edit_Modal(props) {
               </button>
             </div>
             <div className="modal-body text-start">
-            <label htmlFor="fullname " className='labels'>Full Name:</label>
-           <input type="text" className="form-control" id="fullname" placeholder={fullName} autoComplete='off' onChange={handle_fullname} />
+
+          <form onSubmit={handleSubmit(onSubmit)}> 
+
+           <label htmlFor="fullname " className='labels'>Full Name:</label>
+           <input type="text" className="form-control" id="fullname" placeholder={fullName} autoComplete='off'  {...register('fullName', { required: 'Full Name is required' })} />
+           {errors.fullName && (
+           <p className="error-message text-danger">{errors.fullName.message}</p>
+           )}
 
            <label htmlFor="username " className='labels'>User Name:</label>
-           <input type="text" className="form-control" id="username" placeholder={userName}  autoComplete='off' onChange={handle_username}/>
+           <input type="text" className="form-control" id="username" placeholder={userName}  autoComplete='off'{...register('userName', { required: 'User Name is required' })}/>
+           {errors.userName && (
+           <p className="error-message text-danger">{errors.userName.message}</p>
+           )}
 
            <label htmlFor="emailaddress " className='labels'>Email Address:</label>
-           <input type="text" className="form-control" id="emailaddress" placeholder={email} autoComplete='off' onChange={handle_email}/>
-
+           <input type="text" className="form-control" id="emailaddress" placeholder={email} autoComplete='off' {...register('email', { required: 'Email is required' })}/>
+           {errors.email && (
+           <p className="error-message text-danger">{errors.email.message}</p>
+           )}
 
            <label htmlFor="usergroup " className='labels'>User Group:</label> <br/>
        
-              <select name="Group" id="Group" onClickCapture={handle_group}>
+              <select name="Group" id="Group" {...register('group', { required: 'Group name is required' })}>
                 {group && <option value={group}>{group}</option>}
                 <option   value="Office">&nbsp; Office</option>
                 <option   value="Managers">&nbsp; Managers</option>
                 <option   value="Head Office">&nbsp; Head Office</option>
                 
               </select> <br/>
-
-           <label htmlFor="profile " className='labels'>Assign Profile:</label>
-           <input type="text" className="form-control" id="profile" placeholder='Choose Profile' autoComplete='off'/>
-
-
-            </div>
-            <div className="modal-footer">
+              {errors.group && (
+              <p className="error-message text-danger">{errors.group.message}</p>
+            )}
+         
+              <div className='modal-footer'>
               <div id='reset2'>Reset fields</div>
               <button onClick={handleDelete} type="button" className="btn btn-primary" id='del'>Delete User</button>
               <button onClick={close_function} type="button" className="btn btn-secondary" id='close_footer' data-toggle="modal">Cancel</button>
-              <button onClick={handleSubmit} type="button" className="btn btn-primary">Edit User</button>
+              <button type="submit" className="btn btn-primary">Edit User</button>
+              </div>
+
+              </form>
+           
+            
+            
+           
+
             </div>
+          
+      
           </div>
         </div>
       </div>

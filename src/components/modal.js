@@ -1,6 +1,6 @@
 import React , { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-
+import { useForm } from 'react-hook-form';
 
 export default  function Modal(props) {
 
@@ -11,45 +11,27 @@ export default  function Modal(props) {
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [group,setGroup] = useState('')
-
-  const handle_fullname = event => {
-   
-    setFullName(event.target.value)
-      // console.log(event.target.value);
-    };
- 
-
-  const handle_username = event => {
-
-    setUserName(event.target.value);
-    // console.log(event.target.value);
-  };
-
-  const handle_email = event => {
-
-
-    setEmail(event.target.value);
-    // console.log(event.target.value);
-  };
-
-  const handle_group = event => {
-
+  const { register, handleSubmit  , reset, formState: { errors },} = useForm();
   
-      setGroup(event.target.value);
-     // debugger
-      console.log(event.target.value)
 
+
+
+  const reset_modal = ()=>{
+
+    reset();
+    debugger
   }
 
-  const handleSubmit = () => {
-    
+  const onSubmit = (data) => {
     setID(prevID => prevID + 1);
-    props.addUser(id,fullName, userName,email,group);
-
+ 
+    props.addUser(id,data.fullName, data.userName,data.email,data.group);
     setFullName('');
     setUserName('');
     setEmail('');
     setGroup('');
+    reset();
+ 
 //  debugger
     props.handleClick();
   };
@@ -76,40 +58,65 @@ export default  function Modal(props) {
             </div>
             <div className="modal-body text-start">
               
+            <form onSubmit={handleSubmit(onSubmit)}> 
+
             <label htmlFor="fullname " className='labels'>Full Name:</label>
-           <input type="text" className="form-control" id="fullname" placeholder='Enter full name ' autoComplete='off' onChange={handle_fullname}  required/>
+           <input type="text" className="form-control" id="fullname" placeholder='Enter full name ' autoComplete='off'    {...register('fullName', { required: 'Full Name is required' })}/>
+           {errors.fullName && (
+           <p className="error-message text-danger">{errors.fullName.message}</p>
+           )}
 
            <label htmlFor="username " className='labels'>User Name:</label>
-           <input type="text" className="form-control" id="username" placeholder='Enter username' autoComplete='off' onChange={handle_username}  required/>
-
+           <input type="text" className="form-control" id="username" placeholder='Enter username' autoComplete='off'   {...register('userName', { required: 'User Name is required' })}/>
+           {errors.userName && (
+           <p className="error-message text-danger">{errors.userName.message}</p>
+           )}
+           
            <label htmlFor="emailaddress " className='labels'>Email Address:</label>
-           <input type="text" className="form-control" id="emailaddress" placeholder='Enter user email address' autoComplete='off' onChange={handle_email}  required/>
-
+           <input type="text" className="form-control" id="emailaddress" placeholder='Enter user email address' autoComplete='off'   {...register('email', { required: 'Email is required' })}/>
+           {errors.email && (
+           <p className="error-message text-danger">{errors.email.message}</p>
+           )}
 
            <label htmlFor="usergroup " className='labels'>User Group:</label> <br/>
        
-              <select name="Group" id="Group" onClick={handle_group}  required>
+              <select name="Group" id="Group"  {...register('group', { required: 'Group name is required' })}>
+                <option   value=""></option>
                 <option   value="Office">&nbsp; Office</option>
                 <option   value="Managers">&nbsp; Managers</option>
                 <option   value="Head Office">&nbsp; Head Office</option>
-                
+             
               </select> <br/>
-          
-           <label htmlFor="profile " className='labels'>Assign Profile:</label>
-           <input type="text" className="form-control" id="profile" placeholder='Choose Profile' autoComplete='off'/>
-        
+              {errors.group && (
+              <p className="error-message text-danger">{errors.group.message}</p>
+            )}
+                      
+           {/* <label htmlFor="profile " className='labels'>Assign Profile:</label>
+           <input type="text" className="form-control" id="profile" placeholder='Choose Profile' autoComplete='off'/> */}
+
+           <div className='modal-footer'>
+            <div id='reset' onClick={reset_modal}>Reset fields</div>
+            <button onClick={props.handleClick} type="button" className="btn btn-secondary" id='close_footer' data-toggle="modal">Cancel</button>
+           <button type="submit" className="btn btn-primary"> Add User</button>
+           </div>
+           </form>
+
+
+
 
             </div>
      
-            <div className="modal-footer">
-              <div id='reset'>Reset fields</div>
-              <button onClick={props.handleClick} type="button" className="btn btn-secondary" id='close_footer' data-toggle="modal">Cancel</button>
-              <button onClick={handleSubmit} type="button" className="btn btn-primary"> Add User</button>
-            </div>
+         
+           
+           
+          
+         
           </div>
         </div>
+        
       </div>
-
+    
+   
     )
 
 }
